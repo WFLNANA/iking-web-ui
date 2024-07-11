@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "composite": true,
+    "module": "ESNext",
+    "target": "ES2018",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "types": ["./iking-picker"],
+  "include": ["vite.config.ts"]
+}

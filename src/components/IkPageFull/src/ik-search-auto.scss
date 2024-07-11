@@ -1,0 +1,19 @@
+.el-form-item.is-help{
+  .el-form-item__content{
+    position: relative;
+    width: calc(100% - 8px);
+
+    .el-icon.el-tooltip__trigger{
+      color: var(--el-text-color-regular);
+      position: absolute;
+      margin-left: -7px;
+      cursor: help;
+      height: 13px;
+      top: 13px;
+    }
+
+    & > .el-input,.el-select{
+      margin-left: 8px;
+    }
+  }
+}

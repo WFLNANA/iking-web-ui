@@ -1,0 +1,15 @@
+packages:
+  - src/*
+  - examples
+  - build
+
+dependencies:
+  '@vueuse/core': ^9.1.0
+  lodash-es: ^4.17.21
+  lodash-unified: ^1.0.2
+  '@element-plus/icons-vue': ^2.0.6
+  element-plus: ^2.3.3
+  typescript: ^5.0.4
+  vue: ^3.2.37
+  vue-router: ^4.0.16
+  fs-extra: ^10.1.0

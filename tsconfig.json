@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+    "lib": [
+      "ES2018",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext",
+    "baseUrl": ".",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames":true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "rootDir": ".",
+    "types": [
+      "unplugin-vue-macros/macros-global"
+    ],
+    "paths": {
+      "@iking-ui/*": [
+        "src/*"
+      ]
+    }
+  },
+  "files": [],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "src/**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/__tests__/**/*",
+    "**/gulpfile.ts",
+    "**/test-helper",
+    "**/*.md"
+  ]
+}

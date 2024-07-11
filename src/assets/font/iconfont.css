@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "ikapprove"; /* Project id 3989294 */
+  src: url('iconfont.woff2?t=1718770838391') format('woff2'),
+       url('iconfont.woff?t=1718770838391') format('woff'),
+       url('iconfont.ttf?t=1718770838391') format('truetype');
+}
+
+.ikapprove {
+  font-family: "ikapprove" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ikapprove-fenzhi:before {
+  content: "\e6f2";
+}
+
+.ikapprove-ziliucheng1:before {
+  content: "\e673";
+}
+
+.ikapprove-shanchu1:before {
+  content: "\e62f";
+}
+
+.ikapprove-shanchu:before {
+  content: "\e7e2";
+}
+
+.ikapprove-xinzeng:before {
+  content: "\e7e4";
+}
+
+.ikapprove-tupian:before {
+  content: "\e6de";
+}
+
+.ikapprove-EXCEL:before {
+  content: "\e6ea";
+}
+
+.ikapprove-pptcopy:before {
+  content: "\e6eb";
+}
+
+.ikapprove-WORD:before {
+  content: "\e6ec";
+}
+
+.ikapprove-PDF:before {
+  content: "\e6ed";
+}
+
+.ikapprove-fujian:before {
+  content: "\e6ee";
+}
+
+.ikapprove-TXTCopy:before {
+  content: "\e6ef";
+}
+
+.ikapprove-yinpinwenjian:before {
+  content: "\e6f0";
+}
+
+.ikapprove-shipinwenjian:before {
+  content: "\e6f1";
+}
+
+.ikapprove-zhuanjiao:before {
+  content: "\e63f";
+}
+
+.ikapprove-pinglun1:before {
+  content: "\e82f";
+}
+
+.ikapprove-a-putongjiantouzhankai:before {
+  content: "\e616";
+}
+
+.ikapprove-a-putongjiantoushouqi:before {
+  content: "\e617";
+}
+
+.ikapprove-pinglun2:before {
+  content: "\e699";
+}
+
+.ikapprove-bianji:before {
+  content: "\e600";
+}
+
+.ikapprove-tianjia:before {
+  content: "\e631";
+}
+
+.ikapprove-tijiao01:before {
+  content: "\e635";
+}
+
+.ikapprove-duihao2:before {
+  content: "\e69e";
+}
+
+.ikapprove-shenpi:before {
+  content: "\e6a1";
+}
+
+.ikapprove-jujue:before {
+  content: "\e629";
+}
+
+.ikapprove-ziyuan:before {
+  content: "\e602";
+}
+
+.ikapprove-fanhui:before {
+  content: "\e800";
+}
+
+.ikapprove-s_fanhui2:before {
+  content: "\e657";
+}
+
+.ikapprove-chaosong:before {
+  content: "\e68b";
+}
+
+.ikapprove-pinglun:before {
+  content: "\fdb3";
+}
+
+.ikapprove-dengdai:before {
+  content: "\e60c";
+}
+

@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.demo-app {
+  width: 70%;
+  margin: auto;
+}
+
+.icon {
+  width: 10% !important;
+  text-align: center;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+}
+
+.to {
+  width: 4% !important;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+}
+
+.personBlock {
+  width: 85%;
+  padding: 1px 11px;
+  line-height: 32px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .placeholder {
+    color: #a8abb2
+  }
+
+  .nameBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #EAEBED;
+    width: 100px;
+    height: 30px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    font-size: 12px;
+
+    .info {
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      width: 22px;
+      height: 22px;
+      margin-right: 5px;
+    }
+
+    .close {
+      svg {
+        width: 10px;
+        height: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+:deep(.fc-event) {
+  width: calc(100% - 4px);
+  padding: 0px 4px;
+}
+
+:deep(.fc-button) {
+  color: var(--el-color-white);
+  border-color: var(--el-color-primary);
+  background-color: var(--el-color-primary);
+
+  &:hover {
+    color: var(--el-color-white);
+    border-color: var(--el-color-primary-light-3);
+    background-color: var(--el-color-primary-light-3);
+    outline: none;
+  }
+}
+
+:deep(.fc-button-primary:disabled) {
+  background-color: var(--el-color-primary-light-5);
+  border-color: var(--el-color-primary-light-5);
+  color: var(--el-color-white);
+}
+
+:deep(.fc-button-active) {
+  background-color: var(--el-color-primary-dark-2) !important;
+  border-color: var(--el-color-primary-dark-2) !important;
+  color: var(--el-color-white) !important;
+  box-shadow: none !important;
+}
+
+:deep(.fc .fc-button-primary:not(:disabled):active) {
+  background-color: var(--el-color-primary-dark-2) !important;
+  border-color: var(--el-color-primary-dark-2) !important;
+  color: var(--el-color-white) !important;
+  box-shadow: none !important;
+}
+
+:deep(.fc .fc-button-primary:focus) {
+  box-shadow: none !important;
+}
+
+.title-line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
