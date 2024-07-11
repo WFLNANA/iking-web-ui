@@ -117,8 +117,6 @@ function hide() {
 watch(()=> show.value, (bool: boolean) => {
   if (bool) {
     nextTick(() => {
-      console.log('videoUrl', videoUrl.value)
-
       XPlayer = new XgPlayer({
         id: videoId,
         url: videoUrl.value,

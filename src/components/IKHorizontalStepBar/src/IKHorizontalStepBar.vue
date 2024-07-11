@@ -4,7 +4,7 @@
  * @Date: 2023-07-27 14:38:02
  * @updateInfo: 
  * @LastEditors: ln
- * @LastEditTime: 2024-06-14 09:51:33
+ * @LastEditTime: 2024-07-10 13:51:28
 -->
 <script setup lang="ts">
 import { ref, onMounted, nextTick, watch } from "vue";
@@ -78,6 +78,23 @@ watch(
       (dom.scrollLeft =
         distance > dom?.clientWidth ? distance - dom?.offsetLeft : 0);
   }
+);
+watch(
+  () => props.list,
+  () => {
+    nextTick(() => {
+      let dom: any = document.getElementById("stepItemContent");
+      let isHasScroll = dom?.scrollWidth > dom?.clientWidth;
+      showScroll.value = isHasScroll;
+      window.addEventListener("resize", handleResize, true);
+    });
+    const handleResize = () => {
+      let dom: any = document.getElementById("stepItemContent");
+      let isHasScroll = dom?.scrollWidth > dom?.clientWidth;
+      showScroll.value = isHasScroll;
+    };
+  },
+  { deep: true }
 );
 onMounted(() => {
   nextTick(() => {
@@ -174,126 +191,124 @@ const longTouchRightEnd = () => {
 
 <template>
   <div class="ik-hor-step-content">
-    <div class="flex">
+    <div
+      class="icon-left"
+      v-if="showScroll"
+      @mousedown="longTouchLeftStart"
+      @mouseup="longTouchLeftEnd"
+      @click="handleScrollLeft"
+    >
+      <el-icon class="operation-icon"><ArrowLeft size="26px" /></el-icon>
+    </div>
+    <div
+      class="step-item-content"
+      id="stepItemContent"
+      :style="{
+        justifyContent: showScroll ? 'flex-start' : 'center',
+        // width: alignCenter ? `100%` : '',
+      }"
+    >
       <div
-        class="icon-left"
-        v-if="showScroll"
-        @mousedown="longTouchLeftStart"
-        @mouseup="longTouchLeftEnd"
-        @click="handleScrollLeft"
+        :class="`${alignCenter ? 'ik-hor-step-item' : ''} step-item ${
+          index <= active ? 'step-item-active' : ''
+        }`"
+        :style="{ width: alignCenter ? `calc(100%/${list?.length})` : '' }"
+        v-for="(item, index) in list"
+        :key="index"
       >
-        <el-icon class="operation-icon"><ArrowLeft size="26px" /></el-icon>
-      </div>
-      <div
-        class="step-item-content"
-        id="stepItemContent"
-        :style="{
-          justifyContent: showScroll ? 'flex-start' : 'center',
-          width: alignCenter ? `100%` : '',
-        }"
-      >
-        <div
-          :class="`${alignCenter ? 'ik-hor-step-item' : ''} step-item ${
-            index <= active ? 'step-item-active' : ''
-          }`"
-          :style="{ width: alignCenter ? `calc(100%/${list?.length})` : '' }"
-          v-for="(item, index) in list"
-          :key="index"
-        >
-          <div :class="`${alignCenter ? 'ik-hor-step_head' : ''} `">
-            <div
-              v-if="index !== 0"
-              :class="`ik-hor-step_line step-border ${
-                index <= active ? 'step-border-greater-than' : ''
-              }`"
-              :style="{
-                width: `${
-                  spaceNum.indexOf('px') != -1 ? spaceNum : `${spaceNum}px`
-                }`,
-              }"
-            >
-              <i class="ik-hor-step_line_inner"></i>
-            </div>
-            <div
-              :class="`step-num ${
-                index === active
-                  ? 'step-num-active'
-                  : index < active
-                  ? 'step-num-greater-than'
-                  : ''
-              }`"
-              @click="handleClickStep(item, index)"
-              :style="{
-                backgroundColor:
-                  index === active && activeColor ? activeColor : '',
-                cursor:
-                  item && item.disabled
-                    ? 'not-allowed'
-                    : needClick
-                    ? 'pointer'
-                    : 'context-menu',
-              }"
-            >
-              <slot name="icon" :data="{ item, index }">{{ index + 1 }}</slot>
-            </div>
+        <div :class="`${alignCenter ? 'ik-hor-step_head' : ''} `">
+          <div
+            v-if="index !== 0"
+            :class="`ik-hor-step_line step-border ${
+              index <= active ? 'step-border-greater-than' : ''
+            }`"
+            :style="{
+              width: `${
+                spaceNum.indexOf('px') != -1 ? spaceNum : `${spaceNum}px`
+              }`,
+            }"
+          >
+            <i class="ik-hor-step_line_inner"></i>
           </div>
-          <div class="ik-hor-step_main">
-            <div
-              :id="`stepItem${index}`"
-              :class="`step-label ${
-                active === index
-                  ? 'step-label-active'
-                  : index < active
-                  ? 'step-label-greater-than'
-                  : ''
-              } step-item-${index}`"
-              :style="{
-                color: index === active && activeColor ? activeColor : '',
-                cursor:
-                  item && item.disabled
-                    ? 'not-allowed'
-                    : needClick
-                    ? 'pointer'
-                    : 'context-menu',
-              }"
-              @click="handleClickStep(item, index)"
-            >
-              {{ item[propsField.title] }}
-            </div>
-            <div
-              :id="`stepItemDesc${index}`"
-              :class="`step-description step-label ${
-                active === index
-                  ? 'step-label-active'
-                  : index < active
-                  ? 'step-label-greater-than'
-                  : ''
-              } step-item-${index}`"
-              :style="{
-                color: index === active && activeColor ? activeColor : '',
-                cursor:
-                  item && item.disabled
-                    ? 'not-allowed'
-                    : needClick
-                    ? 'pointer'
-                    : 'context-menu',
-              }"
-              @click="handleClickStep(item, index)"
-            >
-              {{ item[propsField.description] }}
-            </div>
+          <div
+            :class="`step-num ${
+              index === active
+                ? 'step-num-active'
+                : index < active
+                ? 'step-num-greater-than'
+                : ''
+            }`"
+            @click="handleClickStep(item, index)"
+            :style="{
+              backgroundColor:
+                index === active && activeColor ? activeColor : '',
+              cursor:
+                item && item.disabled
+                  ? 'not-allowed'
+                  : needClick
+                  ? 'pointer'
+                  : 'context-menu',
+            }"
+          >
+            <slot name="icon" :data="{ item, index }">{{ index + 1 }}</slot>
+          </div>
+        </div>
+        <div class="ik-hor-step_main">
+          <div
+            :id="`stepItem${index}`"
+            :class="`step-label ${
+              active === index
+                ? 'step-label-active'
+                : index < active
+                ? 'step-label-greater-than'
+                : ''
+            } step-item-${index}`"
+            :style="{
+              color: index === active && activeColor ? activeColor : '',
+              cursor:
+                item && item.disabled
+                  ? 'not-allowed'
+                  : needClick
+                  ? 'pointer'
+                  : 'context-menu',
+            }"
+            @click="handleClickStep(item, index)"
+          >
+            {{ item[propsField.title] }}
+          </div>
+          <div
+            :id="`stepItemDesc${index}`"
+            :class="`step-description step-label ${
+              active === index
+                ? 'step-label-active'
+                : index < active
+                ? 'step-label-greater-than'
+                : ''
+            } step-item-${index}`"
+            :style="{
+              color: index === active && activeColor ? activeColor : '',
+              cursor:
+                item && item.disabled
+                  ? 'not-allowed'
+                  : needClick
+                  ? 'pointer'
+                  : 'context-menu',
+            }"
+            @click="handleClickStep(item, index)"
+          >
+            {{ item[propsField.description] }}
           </div>
         </div>
       </div>
-      <div
-        class="icon-right"
-        v-if="showScroll"
-        @mousedown="longTouchRightStart"
-        @mouseup="longTouchRightEnd"
-        @click="handleScrollRight"
-      >
-        <el-icon class="operation-icon"><ArrowRight /></el-icon>
-      </div>
+    </div>
+    <div
+      class="icon-right"
+      v-if="showScroll"
+      @mousedown="longTouchRightStart"
+      @mouseup="longTouchRightEnd"
+      @click="handleScrollRight"
+    >
+      <el-icon class="operation-icon"><ArrowRight /></el-icon>
     </div>
   </div>
 </template>
@@ -312,6 +327,7 @@ const longTouchRightEnd = () => {
     width: 100%;
   }
   .step-item-content {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -377,7 +393,7 @@ const longTouchRightEnd = () => {
       display: inline-block;
       position: relative;
       border-top: 1px dashed var(--el-color-info, #ccc);
-      margin: 0 8px;
+      margin: 0 18px;
       top: -7px;
     }
     .step-num {
@@ -407,12 +423,12 @@ const longTouchRightEnd = () => {
       right: 0;
     }
     .step-border {
-      width: 100% !important;
+      width: calc(100% - 40px) !important;
       position: absolute;
       border-color: inherit;
       display: inline-block;
       border-top: 1px dashed var(--el-color-info, #ccc);
-      margin: 0 8px;
+      margin: 0 20px;
       top: 16px;
       left: -50%;
       right: -50%;

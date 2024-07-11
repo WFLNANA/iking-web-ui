@@ -1,7 +1,7 @@
 <!--
  * @Author: fj
  * @LastEditors: zqf
- * @description: 
+ * @description:
  * @updateInfo: 本次更新内容：
  * @Date: 2023-03-31 15:44:37
  * @LastEditTime: 2024-05-27 14:26:03
@@ -157,8 +157,7 @@
                         "END"
                           ? "已读"
                           : "未读"
-                      }}</span
-                    >
+                      }}</span>
                   </span>
                   <!-- 抄送多人时 -->
                   <span
@@ -291,7 +290,7 @@
             <el-image
               :src="formatUrl(it)"
               :preview-src-list="
-                item[state.defaultFile.attachmentImg].map((im) => formatUrl(im))
+                item[state.defaultFile.attachmentImg].map((im: any) => formatUrl(im))
               "
               fit="cover"
               z-index="9999"
