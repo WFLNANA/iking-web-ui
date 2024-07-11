@@ -1,0 +1,6 @@
+{
+  "name": "IKApprovalProcess",
+  "version": "0.0.2",
+  "main": "index.ts",
+  "module": "index.ts"
+}
